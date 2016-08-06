@@ -14,4 +14,26 @@
  *= require_self
  */
 
- @import "bootstrap";
+ @import 'bootstrap';
+
+#con {
+  margin-top: 70px;
+}
+
+.navbar-brand {
+  width:130px;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#logo {
+  padding: 0;
+  height: 30px;
+  padding-top: 3px;
+  margin-top: 10px;
+}
+
+#nav-right {
+  float:right;
+}
