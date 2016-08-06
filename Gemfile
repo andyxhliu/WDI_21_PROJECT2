@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rmagick', '2.15.4'
 gem 'carrierwave', '0.10.0'
 gem 'devise', '~> 4.2.0'
 gem 'rails', '~> 5.0.0'

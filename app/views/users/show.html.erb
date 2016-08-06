@@ -1,2 +1,47 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">User profile<hr></div>
+          </div>
+          <div class="row">
+      <div class="col-md-4 text-center">
+              <%= link_to image_tag(@user.profile_image.detail.url), @user.profile_image.url, :class=>"img-circle avatar avatar-original", :style=>"-webkit-user-select:none; 
+              display:block; margin:auto;" %>
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h1 class="only-bottom-margin"><%= @user.username%></h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="text-muted">Email:</span><%= @user.email%><br>
+                  <span class="text-muted">Gender:</span> male<br><br>
+                  <span class="text-muted">Description:</span><%= @user.description%><br><br>
+                  <small class="text-muted">Created: <%= @user.created_at %></small>
+                </div>
+                <div class="col-md-6">
+                  <div class="activity-mini">
+                    <i class="glyphicon glyphicon-comment text-muted"></i> 500
+                  </div>
+                  <div class="activity-mini">
+                    <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <hr><button class="btn btn-default pull-right"><i class="glyphicon glyphicon-pencil"></i><%= link_to "Edit", edit_user_registration_path, :style=>"color:grey; text-decoration:none" %></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
