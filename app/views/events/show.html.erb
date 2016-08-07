@@ -4,68 +4,42 @@
 
     <div class="col-sm-8 blog-main">
 
-      <div class="blog-post">
-        <h2 class="blog-post-title">Sample blog post</h2>
-        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+      <div class="blog-post" id="entry-header">
 
-        <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-        <hr>
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <h2>Heading</h2>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <h3>Sub-heading</h3>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-        <pre><code>Example code block</code></pre>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-        <h3>Sub-heading</h3>
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <ul>
-          <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-          <li>Donec id elit non mi porta gravida at eget metus.</li>
-          <li>Nulla vitae elit libero, a pharetra augue.</li>
-        </ul>
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-        <ol>
-          <li>Vestibulum id ligula porta felis euismod semper.</li>
-          <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-          <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-        </ol>
-        <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-      </div><!-- /.blog-post -->
+        <h2 class="blog-post-title"><%= @event.title %></h2>
 
-      <div class="blog-post">
-        <h2 class="blog-post-title">Another blog post</h2>
-        <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
+        <p class="blog-post-meta"><%= @event.created_at %> by <a href="#"><%= @event.creator.username %></a></p>
 
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      </div><!-- /.blog-post -->
+        <div class="entry-header" id="show-poster">
+          <img class="img-fluid" src="<%= @event.event_image%>"/>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Event Description<hr></div>
+          </div>
+          <div class="entry-content">
+            <p><%= @event.description %></p>
+          </div>
+        </div><!-- /.blog-post -->
+      </div>
 
-      <div class="blog-post">
-        <h2 class="blog-post-title">New feature</h2>
-        <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
-        <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <ul>
-          <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-          <li>Donec id elit non mi porta gravida at eget metus.</li>
-          <li>Nulla vitae elit libero, a pharetra augue.</li>
-        </ul>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-      </div><!-- /.blog-post -->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Activities<hr></div>
+          </div>
+          <div class="entry-content">
+            <p>Day 1: Las Vegas – Zion National Park & Bryce Canyon (L) After departing Las Vegas, travel by air-conditioned minibus to Zion National Park, a dazzling mix of white, pink and red Navajo sandstone cliffs that make for a photographer’s paradise. Experience the beauty of Zion Canyon however you’d like during free time in the park. Go on a walk or hike, available for every fitness level. Stroll along the Emerald Pools trail, discover the Temple of Sinawava, the Great White Throne or Weeping Rock, or visit the interpretive Human History Museum where you can enjoy an entertaining ranger’s talk on the patio. After a full afternoon in Zion you'll head to Bryce Canyon, a natural amphitheater created by erosion along the eastern side of the Paunsaugunt Plateau. Bryce Canyon is famous for its hoodoos, or dramatic red spires. Take a walk down into the hoodoos for an unforgettable experience. Enjoy a barbecue dinner (own expense) and a fun evening with new friends.</p><hr>
+            <p>Day 2: Bryce Canyon – Monument Valley (B, L) Wake up to a beautiful Southwest morning and enjoy the drive to Lake Powell for an optional visit to Antelope Canyon (own expense) before traveling to one of the most recognizable locations on the planet: Monument Valley, home to the Navajo Nation. A Navajo member will take you on a guided Jeep tour of the valley before you spend the night at your campsite gazing up at the amazing starry sky, which come morning will be transformed by the magnificent sunrise.</p><hr>
+            <p>Day 3: Monument Valley – Grand Canyon National Park – Las Vegas (B*, L) If camping option was selected, a light breakfast is included; if you stayed overnight at the lodge, breakfast may be purchased at the hotel's cafe. Save the best for last on Day 3! After a brief visit to a traditional Navajo trading post, follow the Colorado River through the Painted Desert to Grand Canyon National Park. Again, see the park as you’d like. Walk along the South Rim, hike deep into the canyon, relax at a rim-side cafe or take in bird’s-eye views on an optional helicopter ride (own expense). Then head back to Las Vegas, where your 3-day adventure concludes in the late evening.</p><hr>
+          </div>
+        </div><!-- /.blog-post -->
+      </div>
 
       <nav class="blog-pagination">
-        <a class="btn btn-outline-primary" href="#">Older</a>
-        <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+        <%= link_to "Back", events_path, :class=>"btn btn-outline-primary" %>
       </nav>
 
     </div><!-- /.blog-main -->
@@ -73,7 +47,18 @@
     <div class="col-sm-3 offset-sm-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h4>About</h4>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+        <p>
+          <strong>Start date:</strong>
+          <%= @event.start_date %>
+        </p>
+        <p>
+          <strong>End date:</strong>
+          <%= @event.end_date %>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <%= @event.location %>
+        </p>
       </div>
       <div class="sidebar-module">
         <h4>Archives</h4>
@@ -107,59 +92,7 @@
 </div><!-- /.container -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <p id="notice"><%= notice %></p>
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
-<p>
-  <strong>Start date:</strong>
-  <%= @event.start_date %>
-</p>
-<p>
-  <strong>End date:</strong>
-  <%= @event.end_date %>
-</p>
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-<p>
-  <b>Image:</b>
-  <%= link_to image_tag(@event.event_image.detail.url), @event.event_image.url %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
