@@ -12491,3 +12491,331 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 178ms (Views: 167.4ms | ActiveRecord: 4.3ms)
 
 
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(279088437195799245);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddEventImageToEvents (20160807121138)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.5ms)[0m  [1m[35mALTER TABLE "events" ADD "event_image" character varying[0m
+  [1m[35mSQL (3.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20160807121138"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(279088437195799245)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (5.3ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'events'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'events_users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+Started GET "/events" for ::1 at 2016-08-07 13:13:57 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (27.8ms)
+  Rendered application/_header.html.erb (3.1ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 652ms (Views: 575.9ms | ActiveRecord: 18.8ms)
+
+
+Started DELETE "/events/3" for ::1 at 2016-08-07 13:14:02 +0100
+Processing by EventsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"9BP2dAs9wnNRhx9VWgrZ60RQwl71qTEoOpnJaTugyPeAJuRWXJ0wgbLg2SuHpcYh0A/GFov2dN28sNlL7Wlqow==", "id"=>"3"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "events_users" WHERE "events_users"."event_id" = $1[0m  [["event_id", 3]]
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = $1[0m  [["id", 3]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/events
+Completed 302 Found in 50ms (ActiveRecord: 10.0ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:14:02 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (2.8ms)
+  Rendered application/_header.html.erb (3.2ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 137ms (Views: 129.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:16:26 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (15.8ms)
+  Rendered application/_header.html.erb (3.3ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 707ms (Views: 632.7ms | ActiveRecord: 17.0ms)
+
+
+Started GET "/users/2" for ::1 at 2016-08-07 13:16:29 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "events_users" ON "events"."id" = "events_users"."event_id" WHERE "events_users"."user_id" = $1[0m  [["user_id", 2]]
+  Rendered users/show.html.erb within layouts/application (72.7ms)
+  Rendered application/_header.html.erb (3.2ms)
+  Rendered application/_footer.html.erb (0.5ms)
+Completed 200 OK in 252ms (Views: 226.0ms | ActiveRecord: 12.3ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:16:34 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (5.1ms)
+  Rendered application/_header.html.erb (2.8ms)
+  Rendered application/_footer.html.erb (0.3ms)
+Completed 200 OK in 177ms (Views: 167.0ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/events/new" for ::1 at 2016-08-07 13:16:35 +0100
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/_form.html.erb (47.4ms)
+  Rendered events/new.html.erb within layouts/application (51.2ms)
+  Rendered application/_header.html.erb (2.7ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 192ms (Views: 170.4ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/events" for ::1 at 2016-08-07 13:17:10 +0100
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oiUl5VqnFAVR2Q+vT+QyIoUX+FQ3GZOHzAwinh9OsTlMzn873OsVjUcoH2BkaUyZrh6VizqUpgMUVYtRszH5WA==", "event"=>{"title"=>"Grand Canyon 12 Days Photography Trip", "start_date(1i)"=>"2016", "start_date(2i)"=>"8", "start_date(3i)"=>"7", "end_date(1i)"=>"2016", "end_date(2i)"=>"8", "end_date(3i)"=>"19", "location"=>"Grand Canyon", "event_image"=>#<ActionDispatch::Http::UploadedFile:0x007ffbf0563440 @tempfile=#<Tempfile:/var/folders/6m/xy2bhlxs32l4ysxmlkwfn7mh0000gn/T/RackMultipart20160807-58151-eoxvhq.jpg>, @original_filename="game_of_death_1600.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"event[event_image]\"; filename=\"game_of_death_1600.jpg\"\r\nContent-Type: image/jpeg\r\n">, "description"=>"kdsjhaksjdnskjdnsakjdnasdnaskjdnkasjdsjdbfldkbfkjfasdkjfbasdjfbsjdfbskdhjfbsjvbdjfshvbdfjhvbdfhjbvdsflbvjdwfvbjdfhbvfdbvfdwjhvbdw,vbwdf,mnvbdfklj,afnvlk,abvlkje,mfhgnvlek.j,mhvnslkfj.,vhnwslkfj.c,vnsdlfkj.cv,nwsflkjcv.,hmnwsdflkcjv,.nwsdflkcj,vmhcnsidlfkgj,.vcmhnwrsldghukj.f,mvnsdpof;lgic/kvjmao;ilk/vjcmeoapis;dlkcjnwepguhljnkwuvjk"}, "commit"=>"Create Event"}
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (5.5ms)[0m  [1m[32mINSERT INTO "events" ("title", "start_date", "end_date", "location", "description", "user_id", "created_at", "updated_at", "event_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Grand Canyon 12 Days Photography Trip"], ["start_date", Sun, 07 Aug 2016], ["end_date", Fri, 19 Aug 2016], ["location", "Grand Canyon"], ["description", "kdsjhaksjdnskjdnsakjdnasdnaskjdnkasjdsjdbfldkbfkjfasdkjfbasdjfbsjdfbskdhjfbsjvbdjfshvbdfjhvbdfhjbvdsflbvjdwfvbjdfhbvfdbvfdwjhvbdw,vbwdf,mnvbdfklj,afnvlk,abvlkje,mfhgnvlek.j,mhvnslkfj.,vhnwslkfj.c,vnsdlfkj.cv,nwsflkjcv.,hmnwsdflkcjv,.nwsdflkcj,vmhcnsidlfkgj,.vcmhnwrsldghukj.f,mvnsdpof;lgic/kvjmao;ilk/vjcmeoapis;dlkcjnwepguhljnkwuvjk"], ["user_id", 2], ["created_at", 2016-08-07 12:17:10 UTC], ["updated_at", 2016-08-07 12:17:10 UTC], ["event_image", "game_of_death_1600.jpg"]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "events_users" ("event_id", "user_id") VALUES ($1, $2)[0m  [["event_id", 4], ["user_id", 2]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/events/4
+Completed 302 Found in 202ms (ActiveRecord: 24.0ms)
+
+
+Started GET "/events/4" for ::1 at 2016-08-07 13:17:11 +0100
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.5ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (3.1ms)
+  Rendered application/_header.html.erb (2.1ms)
+  Rendered application/_footer.html.erb (0.3ms)
+Completed 200 OK in 170ms (Views: 154.7ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:17:20 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (4.3ms)
+  Rendered application/_header.html.erb (3.0ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 123ms (Views: 114.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/users/2" for ::1 at 2016-08-07 13:17:23 +0100
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "events_users" ON "users"."id" = "events_users"."user_id" WHERE "events_users"."event_id" = $1[0m  [["event_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT "events".* FROM "events" INNER JOIN "events_users" ON "events"."id" = "events_users"."event_id" WHERE "events_users"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "events_users" ON "users"."id" = "events_users"."user_id" WHERE "events_users"."event_id" = $1[0m  [["event_id", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered users/show.html.erb within layouts/application (23.1ms)
+  Rendered application/_header.html.erb (3.8ms)
+  Rendered application/_footer.html.erb (0.5ms)
+Completed 200 OK in 132ms (Views: 113.3ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:17:28 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (5.4ms)
+  Rendered application/_header.html.erb (3.0ms)
+  Rendered application/_footer.html.erb (0.5ms)
+Completed 200 OK in 139ms (Views: 130.8ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:20:47 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (26.4ms)
+Completed 500 Internal Server Error in 79ms (ActiveRecord: 5.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `event_image' for nil:NilClass):
+    15:   <tbody>
+    16:     <% @events.each do |event| %>
+    17:       <tr>
+    18:         <td> <%= link_to image_tag(@event.event_image.thumb.url), @event.event_image.url %></td>
+    19:         <td><%= event.title %></td>
+    20:         <td><%= event.start_date %></td>
+    21:         <td><%= event.end_date %></td>
+  
+app/views/events/index.html.erb:18:in `block in _app_views_events_index_html_erb___3839503370472359310_70360024289940'
+app/views/events/index.html.erb:16:in `_app_views_events_index_html_erb___3839503370472359310_70360024289940'
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.0ms)
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (117.5ms)
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mEvent Load (0.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" ORDER BY "events"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "events_users" WHERE "events_users"."event_id" = $1[0m  [["event_id", 4]]
+  [1m[35mSQL (2.0ms)[0m  [1m[31mDELETE FROM "events" WHERE "events"."id" = $1[0m  [["id", 4]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/events" for ::1 at 2016-08-07 13:21:56 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (16.5ms)
+  Rendered application/_header.html.erb (3.2ms)
+  Rendered application/_footer.html.erb (0.6ms)
+Completed 200 OK in 646ms (Views: 572.6ms | ActiveRecord: 14.7ms)
+
+
+Started GET "/events/new" for ::1 at 2016-08-07 13:22:00 +0100
+Processing by EventsController#new as HTML
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/new.html.erb within layouts/application
+  Rendered events/_form.html.erb (47.9ms)
+  Rendered events/new.html.erb within layouts/application (50.5ms)
+  Rendered application/_header.html.erb (3.3ms)
+  Rendered application/_footer.html.erb (0.4ms)
+Completed 200 OK in 224ms (Views: 196.8ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/events" for ::1 at 2016-08-07 13:22:19 +0100
+Processing by EventsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IkaLIvg6v7qWLVw/F5GJwow+28xpT0HzMN4/l5k2IsrMrdH8fna+MoDcTPA8HPd5pze2E2TCdHfoh5ZYNUlqqw==", "event"=>{"title"=>"Grand Canyon 12 Days Photography Trip", "start_date(1i)"=>"2016", "start_date(2i)"=>"8", "start_date(3i)"=>"10", "end_date(1i)"=>"2016", "end_date(2i)"=>"8", "end_date(3i)"=>"22", "location"=>"Grand Canyon", "event_image"=>#<ActionDispatch::Http::UploadedFile:0x007fdbde435618 @tempfile=#<Tempfile:/var/folders/6m/xy2bhlxs32l4ysxmlkwfn7mh0000gn/T/RackMultipart20160807-58416-9puo3m.jpg>, @original_filename="game_of_death_1600.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"event[event_image]\"; filename=\"game_of_death_1600.jpg\"\r\nContent-Type: image/jpeg\r\n">, "description"=>"lkjdnwkcjneckjwfvbfjv"}, "commit"=>"Create Event"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO "events" ("title", "start_date", "end_date", "location", "description", "user_id", "created_at", "updated_at", "event_image") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Grand Canyon 12 Days Photography Trip"], ["start_date", Wed, 10 Aug 2016], ["end_date", Mon, 22 Aug 2016], ["location", "Grand Canyon"], ["description", "lkjdnwkcjneckjwfvbfjv"], ["user_id", 2], ["created_at", 2016-08-07 12:22:19 UTC], ["updated_at", 2016-08-07 12:22:19 UTC], ["event_image", "game_of_death_1600.jpg"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "events_users" ("event_id", "user_id") VALUES ($1, $2)[0m  [["event_id", 5], ["user_id", 2]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/events/5
+Completed 302 Found in 480ms (ActiveRecord: 14.8ms)
+
+
+Started GET "/events/5" for ::1 at 2016-08-07 13:22:19 +0100
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering events/show.html.erb within layouts/application
+  Rendered events/show.html.erb within layouts/application (3.3ms)
+  Rendered application/_header.html.erb (2.6ms)
+  Rendered application/_footer.html.erb (0.4ms)
+Completed 200 OK in 139ms (Views: 124.7ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/events" for ::1 at 2016-08-07 13:22:24 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.8ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (9.1ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 3.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `event_image' for nil:NilClass):
+    15:   <tbody>
+    16:     <% @events.each do |event| %>
+    17:       <tr>
+    18:         <td> <%= link_to image_tag(@event.event_image.thumb.url), @event.event_image.url %></td>
+    19:         <td><%= event.title %></td>
+    20:         <td><%= event.start_date %></td>
+    21:         <td><%= event.end_date %></td>
+  
+app/views/events/index.html.erb:18:in `block in _app_views_events_index_html_erb___4054653315192447487_70291135966040'
+app/views/events/index.html.erb:16:in `_app_views_events_index_html_erb___4054653315192447487_70291135966040'
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (6.3ms)
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.6ms)
+  Rendering /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/apple/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (120.1ms)
+Started GET "/events" for ::1 at 2016-08-07 13:22:49 +0100
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (0.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  Rendered events/index.html.erb within layouts/application (4.3ms)
+  Rendered application/_header.html.erb (3.0ms)
+  Rendered application/_footer.html.erb (0.5ms)
+Completed 200 OK in 130ms (Views: 124.6ms | ActiveRecord: 1.4ms)
+
+
