@@ -14,7 +14,7 @@
  *= require_self
  */
 
- @import 'bootstrap';
+@import 'bootstrap';
 
 #con {
   margin-top: 70px;
@@ -27,11 +27,20 @@
   text-align: center;
 }
 
+.nav-item {
+  font-family: Source Sans Pro, Arial, Helvetica, sans-serif;
+  color: black;
+}
+
 #logo {
   padding: 0;
   height: 30px;
   padding-top: 3px;
   margin-top: 10px;
+  color: #666666;
+  font-family: Source Sans Pro, Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 22px;
 }
 
 #nav-right {
@@ -55,3 +64,292 @@
 #sel1 {
   width: 100px;
 }
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+/* Thumbnail
+-------------------------------------------------- */
+/* Image Box Style */
+.box {
+  cursor: pointer;
+  height: 460px;
+  float: left;
+  margin: 5px;
+  position: relative;
+  overflow: hidden;
+  width: 270px;
+    -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+    -moz-box-shadow: 1px 1px 1px 1px #ccc;
+    box-shadow: 1px 1px 1px 1px #ccc;
+}
+
+.box img {
+  position: absolute;
+  left: 0;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out; 
+  transition: all 300ms ease-out;
+}
+
+/* Caption Common Style */
+.box .caption {
+  background-color: rgba(0,0,0,0.3);
+  position: absolute;
+  color: #fff;
+  z-index: 100;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    -ms-transition: all 300ms ease-out; 
+    transition: all 300ms ease-out;
+  left: 0;
+}
+
+.box .fade-caption, #mainwrapper .box .scale-caption  {
+  opacity: 0;
+  width: 270px;
+  height: 460px;
+  text-align: center;
+  padding: 20px;
+}
+
+.card-content {
+  width:230px;
+  height:420px;
+  border: 5px solid black;
+  padding: 10px;
+  padding-top: 100px;
+}
+
+h3 {
+  font-size: 22px;
+  font-family: Source Sans Pro, Arial, Helvetica, sans-serif;
+}
+
+h3 a {
+  text-decoration: underline;
+  color: white;
+}
+
+h3 a:hover {
+  color: white;
+}
+
+.card-title {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.activity-mini {
+  display: inline-block;
+}
+
+.box:hover .fade-caption, #mainwrapper .box:hover .scale-caption  {
+  opacity: 1;
+}
+
+.card-interest {
+  background-color: black;
+  width: 130px;
+  height:50px;
+  float: left;
+  margin-left: 55px;
+  margin-top: -20px;
+  padding-top:13px;
+}
+
+
+/*
+ * Globals
+ */
+
+@media (min-width: 48em) {
+  html {
+    font-size: 18px;
+  }
+}
+
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #555;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  color: #333;
+}
+
+
+/*
+ * Override Bootstrap's default container.
+ */
+
+.container {
+  max-width: 80rem;
+}
+
+
+/*
+ * Masthead for nav
+ */
+
+.blog-masthead {
+  margin-bottom: 3rem;
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -.1rem .25rem rgba(0,0,0,.1);
+          box-shadow: inset 0 -.1rem .25rem rgba(0,0,0,.1);
+}
+
+/* Nav links */
+.nav-link {
+  position: relative;
+  padding: 1rem;
+  font-weight: 500;
+  color: #cdddeb;
+}
+.nav-link:hover,
+.nav-link:focus {
+  color: #fff;
+  background-color: transparent;
+}
+
+/* Active state gets a caret at the bottom */
+.nav-link.active {
+  color: #fff;
+}
+.nav-link.active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -.3rem;
+  vertical-align: middle;
+  content: "";
+  border-right: .3rem solid transparent;
+  border-bottom: .3rem solid;
+  border-left: .3rem solid transparent;
+}
+
+
+/*
+ * Blog name and description
+ */
+
+.blog-header {
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  border-bottom: .05rem solid #eee;
+}
+.blog-title {
+  margin-bottom: 0;
+  font-size: 2rem;
+  font-weight: normal;
+}
+.blog-description {
+  font-size: 1.1rem;
+  color: #999;
+}
+
+@media (min-width: 40em) {
+  .blog-title {
+    font-size: 3.5rem;
+  }
+}
+
+
+/*
+ * Main column and sidebar layout
+ */
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 1rem;
+  /*margin: 0 -1rem 1rem;*/
+}
+.sidebar-module-inset {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-radius: .25rem;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Pagination */
+.blog-pagination {
+  margin-bottom: 4rem;
+}
+.blog-pagination > .btn {
+  border-radius: 2rem;
+}
+
+
+/*
+ * Blog posts
+ */
+
+.blog-post {
+  margin-bottom: 4rem;
+}
+.blog-post-title {
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+
+
+/*
+ * Footer
+ */
+
+.blog-footer {
+  padding: 2.5rem 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: .05rem solid #e5e5e5;
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+

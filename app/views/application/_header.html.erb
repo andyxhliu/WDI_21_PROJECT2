@@ -1,10 +1,10 @@
 <header>
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default navbar-fixed-top" id="nav-bar">
     <div class="container"> 
       <div class="navbar-header">
           <%= link_to "LikeMinder", events_path, :class=>"navbar-brand", :id=>"logo" %>
       </div>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" id="nav-left">
         <li class="nav-item"><%= link_to "Events", events_path %></li>
         <li class="nav-item"><%= link_to "Add Event", new_event_path %></li>
       </ul>

@@ -1,34 +1,30 @@
-<h1>Events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td> <%= link_to image_tag(event.event_image.thumb.url), event.event_image.url %></td>
-        <td><%= event.title %></td>
-        <td><%= event.start_date %></td>
-        <td><%= event.end_date %></td>
-        <td><%= event.location %></td>
-        <td><%= event.description %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+<div class="row">
+  <% @events.each do |event| %> 
+    <div class="col-xs-6 col-md-3">
+      <div id="box-3" class="box">
+        <%= link_to image_tag(event.event_image.thumb.url), event %>
+        <span class="caption fade-caption">
+          <div class="card-interest">
+            PHOTOGRAPHY
+          </div>
+          <div class="card-content">
+            <p><%=distance_of_time_in_words(event.end_date, Time.now) %> Remaining</p>
+            <div class="card-title">
+              <h3><%=link_to event.title, event %></h3>
+            </div>
+            <div class="activity-mini">
+              <i class="glyphicon glyphicon-comment text-muted"></i> 500
+            </div>
+            <div class="activity-mini">
+              <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+            </div>
+            <div class="card-admin">
+              <button><%= link_to 'Edit', edit_event_path(event) %></button>
+              <button><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>

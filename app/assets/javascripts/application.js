@@ -27,6 +27,7 @@
  * JS used only for table constructor: you don't need it in your project
  */
  @import 'bootstrap';
+ @import 'bootstrap.min.js';
 $(document).ready(function() {
 
     var table = $('#table');
