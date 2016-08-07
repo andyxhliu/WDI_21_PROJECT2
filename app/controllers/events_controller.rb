@@ -26,6 +26,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
 
+    current_user.created_events << @event
+    @event.attendees << current_user
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

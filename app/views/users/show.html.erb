@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-12 lead">User profile<hr></div>
+            <div class="col-md-12 lead">User Profile<hr></div>
           </div>
           <div class="row">
-      <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center">
               <%= link_to image_tag(@user.profile_image.detail.url), @user.profile_image.url, :class=>"img-circle avatar avatar-original", :style=>"-webkit-user-select:none; 
               display:block; margin:auto;" %>
             </div>
@@ -43,5 +43,86 @@
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">Events Organised<hr></div>
+            </div>
+            <div id="demo">
+              <div class="table-responsive-vertical shadow-z-1">
+                <table id="table" class="table table-hover table-mc-light-blue">
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Attendees</th>
+                      <th>Organiser</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.created_events.each do |event| %>
+                      <tr>
+                        <td data-title="Name">
+                          <%= link_to event.title, event_path(event) %>
+                        </td>
+                        <td data-title="Name"><%= event.attendees.length%></td>
+                        <td data-title="Link">
+                          <%= link_to event.creator.username, user_path(event.creator) %>
+                        </td>
+                        <td data-title="Status"><button>Details</button></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">Events Attended<hr></div>
+            </div>
+            <div id="demo">
+              <div class="table-responsive-vertical shadow-z-1">
+                <table id="table" class="table table-hover table-mc-light-blue">
+                  <thead>
+                    <tr>
+                      <th>Event</th>
+                      <th>Attendees</th>
+                      <th>Organiser</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.events_attending.each do |event| %>
+                      <tr>
+                        <td data-title="Name">
+                          <%= link_to event.title, event_path(event) %>
+                        </td>
+                        <td data-title="Name"><%= event.attendees.length%></td>
+                        <td data-title="Link">
+                          <%= link_to event.creator.username, user_path(event.creator) %>
+                        </td>
+                        <td data-title="Status"><button>Details</button></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
