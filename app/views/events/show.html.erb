@@ -10,7 +10,7 @@
 
         <p class="blog-post-meta"><%= @event.created_at %> by <%= link_to @event.creator.username, user_path(@event.creator) %></p>
 
-        <button class="btn btn-success" id="join"><a href="#">Join!</a></button>
+        <button class="btn btn-success" id="join"><%= link_to "Join!", join_path %></button>
         <button class="btn btn-danger" id="like"><a href="#">Like!</a></button>
         <div class="entry-header" id="show-poster">
           <img class="img-fluid" src="<%= @event.event_image%>"/>
@@ -70,10 +70,10 @@
         </ol>
       </div>
       <div class="sidebar-module">
-        <h4>Goings</h4>
+        <h4>Goings (<%= @event.attendees.length%>)</h4>
         <ol class="list-unstyled">
           <% @event.attendees.each do |attendee| %>
-            <li><%= link_to image_tag(attendee.profile_image.thumb.url), user_path(attendee), :id=>"profile_image" %><%= link_to attendee.username, user_path(attendee), :id=>"profile_username" %></li>
+            <li class="goings-list"><%= link_to image_tag(attendee.profile_image.thumb.url), user_path(attendee), :id=>"profile_image" %><%= link_to attendee.username, user_path(attendee), :id=>"profile_username" %></li>
           <% end %>
         </ol>
       </div>

@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root "statics#homepage"
   get 'about', to: 'statics#about'
   get 'users/:id', to: 'users#show', as: 'user'
-
+  get '/events/:id/join', to: 'events#join', as: 'join'
+  
 end
