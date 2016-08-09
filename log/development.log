@@ -33798,3 +33798,52 @@ Processing by GroupsController#show as HTML
 Completed 200 OK in 1505ms (Views: 1302.7ms | ActiveRecord: 59.6ms)
 
 
+  [1m[36mGroup Load (3.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" ORDER BY "groups"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTag Load (10.5ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "events_tags" ON "tags"."id" = "events_tags"."tag_id" INNER JOIN "events" ON "events_tags"."event_id" = "events"."id" WHERE "events"."group_id" = $1[0m  [["group_id", 1]]
+Started GET "/events" for ::1 at 2016-08-09 15:19:00 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by EventsController#index as HTML
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering events/index.html.erb within layouts/application
+  [1m[36mEvent Load (2.6ms)[0m  [1m[34mSELECT "events".* FROM "events"[0m
+  [1m[36mTag Load (1.0ms)[0m  [1m[34mSELECT  "tags".* FROM "tags" INNER JOIN "events_tags" ON "tags"."id" = "events_tags"."tag_id" WHERE "events_tags"."event_id" = $1 ORDER BY "tags"."id" ASC LIMIT $2[0m  [["event_id", 1], ["LIMIT", 1]]
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "votes" WHERE "votes"."votable_id" = $1 AND "votes"."votable_type" = $2 AND "votes"."vote_flag" = $3 AND "votes"."vote_scope" IS NULL[0m  [["votable_id", 1], ["votable_type", "Event"], ["vote_flag", true]]
+  Rendered events/index.html.erb within layouts/application (166.5ms)
+  Rendered application/_header.html.erb (21.0ms)
+  Rendered application/_jumbotron.html.erb (0.6ms)
+  Rendered application/_footer.html.erb (1.1ms)
+Completed 200 OK in 1379ms (Views: 1169.6ms | ActiveRecord: 45.5ms)
+
+
+Started GET "/groups" for ::1 at 2016-08-09 15:19:08 +0100
+Processing by GroupsController#index as HTML
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (2.9ms)[0m  [1m[34mSELECT "groups".* FROM "groups"[0m
+  Rendered groups/index.html.erb within layouts/application (130.8ms)
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered application/_header.html.erb (11.9ms)
+  Rendered application/_jumbotron.html.erb (1.7ms)
+  Rendered application/_footer.html.erb (0.4ms)
+Completed 200 OK in 1045ms (Views: 861.8ms | ActiveRecord: 28.2ms)
+
+
+Started GET "/groups/1" for ::1 at 2016-08-09 15:19:11 +0100
+Processing by GroupsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mGroup Load (1.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering groups/show.html.erb within layouts/application
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "votes" WHERE "votes"."votable_id" = $1 AND "votes"."votable_type" = $2 AND "votes"."vote_flag" = $3 AND "votes"."vote_scope" IS NULL[0m  [["votable_id", 1], ["votable_type", "Group"], ["vote_flag", true]]
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT "events".* FROM "events" WHERE "events"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "events_users" ON "users"."id" = "events_users"."user_id" WHERE "events_users"."event_id" = $1[0m  [["event_id", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTag Load (1.4ms)[0m  [1m[34mSELECT "tags".* FROM "tags" INNER JOIN "events_tags" ON "tags"."id" = "events_tags"."tag_id" INNER JOIN "events" ON "events_tags"."event_id" = "events"."id" WHERE "events"."group_id" = $1[0m  [["group_id", 1]]
+  [1m[36mUser Load (4.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "groups_users" ON "users"."id" = "groups_users"."user_id" WHERE "groups_users"."group_id" = $1[0m  [["group_id", 1]]
+  Rendered groups/show.html.erb within layouts/application (430.2ms)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered application/_header.html.erb (13.4ms)
+  Rendered application/_jumbotron.html.erb (1.9ms)
+  Rendered application/_footer.html.erb (1.1ms)
+Completed 200 OK in 859ms (Views: 825.9ms | ActiveRecord: 17.1ms)
+
+

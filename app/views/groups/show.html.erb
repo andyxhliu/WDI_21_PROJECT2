@@ -76,6 +76,12 @@
       <div class="sidebar-module sidebar-module-inset">
         <h4>About</h4><hr>
         <p>
+          <strong>Tags:</strong>
+          <% @group.tags.each do |tag| %>
+            <%= tag.name %> 
+          <% end %>
+        </p>
+        <p>
           <strong>founded at:</strong>
           <%= @group.created_at %>
         </p>
