@@ -13,6 +13,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @groups = Group.all
+    @tags = Tag.all
   end
 
   def edit
@@ -53,6 +54,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def upvote 
+    @event = Event.find(params[:id])
+    @event.upvote_by current_user
+    redirect_to :back
+  end  
+
   def destroy
     @event.destroy
     respond_to do |format|
@@ -67,6 +74,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :start_date, :end_date, :location, :description, :event_image, :group_id)
+      params.require(:event).permit(:title, :start_date, :end_date, :location, :description, :event_image, :group_id, :tag_ids => [])
     end
 end

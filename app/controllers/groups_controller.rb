@@ -35,6 +35,12 @@ class GroupsController < ApplicationController
     redirect_to "/groups/#{@group.id}"
   end
 
+  def upvote 
+    @group = Group.find(params[:id])
+    @group.upvote_by current_user
+    redirect_to :back
+  end  
+
   def update
     respond_to do |format|
       if @group.update(group_params)

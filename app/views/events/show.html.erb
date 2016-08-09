@@ -10,8 +10,15 @@
 
         <p class="blog-post-meta"><%= @event.created_at %> by <%= link_to @event.creator.username, user_path(@event.creator) %></p>
 
-        <button class="btn btn-success" id="join"><%= link_to "Join!", join_path %></button>
-        <button class="btn btn-danger" id="like"><a href="#">Like!</a></button>
+        <button class="btn btn-success" id="join"><%= link_to "Join", join_path %></button>
+
+        <button class="btn btn-danger" id="like">
+          <%= link_to like_event_path(@event), method: :put do %>
+            Likes
+             (<%= @event.get_upvotes.size %>)
+          <% end %>
+        </button>
+
         <div class="entry-header" id="show-poster">
           <img class="img-fluid" src="<%= @event.event_image%>"/>
         </div>
@@ -100,6 +107,13 @@
     <div class="col-sm-3 offset-sm-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h4>About</h4><hr>
+
+        <p>
+          <strong>Tags:</strong>
+          <% @event.tags.each do |tag| %>
+            <%= tag.name %> 
+          <% end %>
+        </p>
         <p>
           <strong>Start date:</strong>
           <%= @event.start_date %>

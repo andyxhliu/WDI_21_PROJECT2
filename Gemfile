@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'acts_as_votable', '~> 0.10.0'
 gem 'rmagick', '2.15.4'
 gem 'carrierwave', '0.10.0'
 gem 'devise', '~> 4.2.0'

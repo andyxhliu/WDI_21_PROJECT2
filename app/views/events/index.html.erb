@@ -5,7 +5,7 @@
         <%= link_to image_tag(event.event_image.thumb.url), event %>
         <span class="caption fade-caption">
           <div class="card-interest">
-            PHOTOGRAPHY
+              <%= event.tags.first.name %> 
           </div>
           <div class="card-content">
             <p><%=distance_of_time_in_words(event.end_date, Time.now) %> Remaining</p>
@@ -13,10 +13,10 @@
               <h3><%=link_to event.title, event %></h3>
             </div>
             <div class="activity-mini">
-              <i class="glyphicon glyphicon-comment text-muted"></i> 500
+              <i class="glyphicon glyphicon-comment text-muted"></i> <%= event.comments.size %>
             </div>
             <div class="activity-mini">
-              <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
+              <i class="glyphicon glyphicon-thumbs-up text-muted"></i> <%= event.get_upvotes.size %>
             </div>
             <div class="card-admin">
               <button><%= link_to 'Edit', edit_event_path(event) %></button>

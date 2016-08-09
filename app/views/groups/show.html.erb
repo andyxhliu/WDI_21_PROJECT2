@@ -7,7 +7,14 @@
         <p class="blog-post-meta"><%= @group.created_at %></p>
 
         <button class="btn btn-success" id="join"><%= link_to "Join!", join_group_path %></button>
-        <button class="btn btn-danger" id="like"><a href="#">Like!</a></button>
+        <button class="btn btn-danger" id="like">
+          <%= link_to like_group_path(@group), method: :put do %>
+            Likes
+             (<%= @group.get_upvotes.size %>)
+          <% end %>
+        </button>
+
+
         <div class="entry-header" id="show-poster">
           <img class="img-fluid" src="<%= @group.group_image%>"/>
         </div>

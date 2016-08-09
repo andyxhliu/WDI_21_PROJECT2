@@ -4,5 +4,7 @@ class Group < ApplicationRecord
   has_many :comments
 
   mount_uploader :group_image, GroupImageUploader
+
+  acts_as_votable
 end
 
