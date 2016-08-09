@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      <div class="blog-post" id="entry-header">
+        <h2 class="blog-post-title"><%= @group.title %></h2>
+
+        <p class="blog-post-meta"><%= @group.created_at %></p>
+
+        <button class="btn btn-success" id="join"><%= link_to "Join!", join_group_path %></button>
+        <button class="btn btn-danger" id="like"><a href="#">Like!</a></button>
+        <div class="entry-header" id="show-poster">
+          <img class="img-fluid" src="<%= @group.group_image%>"/>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Group Description<hr></div>
+          </div>
+          <div class="entry-content">
+            <p><%= @group.description %></p>
+          </div>
+        </div><!-- /.blog-post -->
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Events Organised By This Group<hr></div>
+          </div>
+          <div id="demo">
+            <div class="table-responsive-vertical shadow-z-1">
+              <table id="table" class="table table-hover table-mc-light-blue">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Attendees</th>
+                    <th>Organiser</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @group.events.each do |event| %>
+                    <tr>
+                      <td data-title="Name">
+                        <%= link_to event.title, event_path(event) %>
+                      </td>
+                      <td data-title="Name"><%= event.attendees.length%></td>
+                      <td data-title="Link">
+                        <%= link_to event.creator.username, user_path(event.creator) %>
+                      </td>
+                      <td data-title="Status"><button>Details</button></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="blog-pagination">
+        <%= link_to "Back", events_path, :class=>"btn btn-outline-primary" %>
+      </nav>
+
+    </div><!-- /.blog-main -->
+
+    <div class="col-sm-3 offset-sm-1 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        <h4>About</h4><hr>
+        <p>
+          <strong>founded at:</strong>
+          <%= @group.created_at %>
+        </p>
+        <p>
+          <strong>Location:</strong>
+          <%= @group.location %>
+        </p>
+      </div>
+
+      <div class="sidebar-module">
+        <h4>Interested?</h4>
+        <ol class="list-unstyled">
+        <button class="btn btn-info" id="info"><a href="#">Event Gallery</a></button>
+        </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>Members (<%= @group.users.length%>)</h4>
+        <ol class="list-unstyled">
+          <% @group.users.each do |member| %>
+            <li class="goings-list"><%= link_to image_tag(member.profile_image.thumb.url), user_path(member), :id=>"profile_image" %><%= link_to member.username, user_path(member), :id=>"profile_username" %></li>
+          <% end %>
+        </ol>
+      </div>
+    </div><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
+
+
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>

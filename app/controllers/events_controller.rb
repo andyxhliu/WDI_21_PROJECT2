@@ -1,16 +1,18 @@
 class EventsController < ApplicationController 
   before_action :authenticate_user!
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :join]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :join, :comment]
 
   def index
     @events = Event.all
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
     @event = Event.new
+    @groups = Group.all
   end
 
   def edit
@@ -38,6 +40,7 @@ class EventsController < ApplicationController
     redirect_to "/events/#{@event.id}"
   end
 
+
   def update
     respond_to do |format|
       if @event.update(event_params)
@@ -64,6 +67,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:title, :start_date, :end_date, :location, :description, :event_image)
+      params.require(:event).permit(:title, :start_date, :end_date, :location, :description, :event_image, :group_id)
     end
 end

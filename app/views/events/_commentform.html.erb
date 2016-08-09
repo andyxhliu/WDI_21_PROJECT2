@@ -1,0 +1,26 @@
+<%= form_for(comment) do |f| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Comment %>
+    <%= f.text_area :content, :id=>"comment_box", :placeholder=>"Your Comment" %>
+  </div>
+
+  <%= f.hidden_field :event_id, value: @event.id %>
+
+  <div class="btn btn-success green">
+    <i class="fa fa-share"></i>
+    <%= f.submit "Comment", :style=>"background-color: rgba(255,255,255,0); color: white; border:none;" %>
+  </div>
+
+<% end %>

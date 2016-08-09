@@ -1,0 +1,15 @@
+<% @groups.each do |group| %>
+  <div class="col-lg-6 col-md-4 col-sm-6 col-xs-12">
+    <div class="hovereffect">
+      <%= image_tag group.group_image.url, :class=>"img-responsive" %>
+      <div class="overlay">
+        <h2><%= group.title %></h2>
+        <p class="card-bottom"> 
+          <%= link_to 'Detail', group, :class=>"groupcard-link" %>
+          <%= link_to 'Edit', edit_group_path(group), :class=>"groupcard-link" %>
+          <%= link_to 'Destroy', group,:class=>"groupcard-link", method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p> 
+      </div>
+    </div> 
+  </div>
+<% end %>

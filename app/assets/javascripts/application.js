@@ -29,7 +29,7 @@
  @import 'bootstrap';
  @import 'bootstrap.min.js';
 $(document).ready(function() {
-
+    $("[data-toggle=tooltip]").tooltip();
     var table = $('#table');
 
     // Table bordered

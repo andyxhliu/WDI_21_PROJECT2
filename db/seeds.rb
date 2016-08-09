@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require_relative '../models/event.rb'
+require_relative '../models/organisation.rb'
+
+e1 = Event.first
+c1 = Comment.new(id:"1", content:"Hello")
+e1.comments << c1
+e1.save
+c1.reload
