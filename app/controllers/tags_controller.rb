@@ -1,6 +1,7 @@
-class TagsController < ApplicationController
+class TagsController < ApplicationController 
+  before_action :authenticate_user!
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
-
+  before_action :me?
   # GET /tags
   # GET /tags.json
   def index
@@ -65,6 +66,10 @@ class TagsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
       @tag = Tag.find(params[:id])
+    end
+
+    def me?
+      redirect_to events_path unless current_user.username == "xl5913"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

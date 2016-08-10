@@ -1,6 +1,7 @@
-class CommentsController < ApplicationController
+class CommentsController < ApplicationController 
+  before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
+  before_action :admin?, only: [:edit, :destroy, :update]
   # GET /comments
   # GET /comments.json
   def index
@@ -67,6 +68,10 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def admin?
+      redirect_to event_path(@event) unless current_user == @event.creator
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

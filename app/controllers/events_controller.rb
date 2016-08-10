@@ -1,7 +1,7 @@
 class EventsController < ApplicationController 
   before_action :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy, :join, :comment]
-
+  before_action :admin?, only: [:edit, :destroy, :update]
   def index
     @events = Event.all
   end
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to "/events/#{@event.id}", notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -46,6 +46,9 @@ class EventsController < ApplicationController
 
 
   def update
+    if event_params[:user_id]
+      @event.creator = User.find(event_params[:user_id])
+    end
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -75,8 +78,12 @@ class EventsController < ApplicationController
     def set_event
       @event = Event.find(params[:id])
     end
+ 
+    def admin?
+      redirect_to event_path(@event) unless current_user == @event.creator
+    end
 
     def event_params
-      params.require(:event).permit(:title, :start_date, :end_date, :location, :description, :event_image, :group_id, :tag_ids => [])
+      params.require(:event).permit(:title, :start_date, :end_date, :location, :description, :event_image, :group_id, :user_id, :tag_ids => [])
     end
 end

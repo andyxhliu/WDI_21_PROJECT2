@@ -1,6 +1,8 @@
-class TitlesController < ApplicationController
+class TitlesController < ApplicationController 
+  before_action :authenticate_user!
   before_action :set_title, only: [:show, :edit, :update, :destroy]
-
+  before_action :admin?, only: [:edit, :destroy, :update]
+  before_action :me?, only: [:index, :new]
   # GET /titles
   # GET /titles.json
   def index
@@ -19,6 +21,7 @@ class TitlesController < ApplicationController
 
   # GET /titles/1/edit
   def edit
+    @event = Event.find(@title[:event_id])
   end
 
   # POST /titles
@@ -57,8 +60,9 @@ class TitlesController < ApplicationController
   # DELETE /titles/1.json
   def destroy
     @title.destroy
+    @event = Event.find(@title[:event_id])
     respond_to do |format|
-      format.html { redirect_to titles_url, notice: 'Title was successfully destroyed.' }
+      format.html { redirect_to event_path(@event), notice: 'Title was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +71,15 @@ class TitlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_title
       @title = Title.find(params[:id])
+    end
+
+    def admin?
+      @event = Event.find(@title[:event_id])
+      redirect_to event_path(@event) unless current_user == @event.creator
+    end
+
+    def me?
+      redirect_to events_path unless current_user.username == "xl5913"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

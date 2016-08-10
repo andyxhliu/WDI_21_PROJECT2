@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.label :title_id %>
+    <%= f.collection_select :title_id, titles, :id, :name %>
   </div>
 
   <div class="field">
@@ -21,10 +21,9 @@
     <%= f.time_select :start %>
   </div>
 
-
   <div class="field">
-    <%= f.label :title_id %>
-    <%= f.collection_select :title_id, titles, :id, :name %>
+    <%= f.label :content %>
+    <%= f.text_area :content %>
   </div>
 
   <div class="actions">

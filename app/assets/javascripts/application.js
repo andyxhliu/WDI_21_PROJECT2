@@ -91,24 +91,29 @@ $(document).on('turbolinks:load', function() {
   console.log("JS loaded");
   var $events = $('.events');
   var $divs = $events.find('.for-search');
-  $('#sort').on('click', function() {
+  $('#likes').on('click', function() {
     var button = this;
     $divs.sort(function(a, b) {
-      if($(button).text() === "ASC") {
-        return $(a).data('searchstring') > $(b).data('searchstring');
+      if($(button).text() === "Likes") {
+        return $(a).data('likes') < $(b).data('likes');
       } else {
-        return $(a).data('searchstring') < $(b).data('searchstring');
+        return $(a).data('likes') > $(b).data('likes');
       }
     }).each(function() {
       $(this).appendTo($events);
     });
-
-    if($(button).text() === "ASC") {
-      $(button).text("DESC");
-    } else {
-      $(button).text("ASC");
-    }
-    return false;
+  });
+  $('#recent').on('click', function() {
+    var button = this;
+    $divs.sort(function(a, b) {
+      if($(button).text() === "Most Recent Event") {
+        return $(a).data('added') > $(b).data('added');
+      } else {
+        return $(a).data('added') < $(b).data('added');
+      }
+    }).each(function() {
+      $(this).appendTo($events);
+    });
   });
 
   $('#search').on('keyup', function() {
@@ -124,4 +129,5 @@ $(document).on('turbolinks:load', function() {
       }
     });
   });
+
 });

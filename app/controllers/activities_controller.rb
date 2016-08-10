@@ -1,6 +1,8 @@
-class ActivitiesController < ApplicationController
+class ActivitiesController < ApplicationController 
+  before_action :authenticate_user!
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
-
+  before_action :admin?, only: [:edit, :destroy, :update]
+  before_action :me?, only: [:index, :new]
   # GET /activities
   # GET /activities.json
   def index
@@ -19,6 +21,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
+    @event = Event.find(@title[:event_id])
   end
 
   # POST /activities
@@ -59,6 +62,8 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1.json
   def destroy
     @activity.destroy
+    @title = Title.find(@activity[:title_id])
+    @event = Event.find(@title[:event_id])
     respond_to do |format|
       format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +74,16 @@ class ActivitiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
       @activity = Activity.find(params[:id])
+    end
+
+    def admin?
+      @title = Title.find(@activity[:title_id])
+      @event = Event.find(@title[:event_id])
+      redirect_to event_path(@event) unless current_user == @event.creator
+    end
+
+    def me?
+      redirect_to events_path unless current_user.username == "xl5913"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,30 @@
+<%= form_for(event) do |f| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.collection_select :user_id, User.all, :id, :username %>
+  </div>
+
+  <div class="field">
+    <%= f.collection_radio_buttons(:user_id, User.all, :id, :profile_image) do |b|
+      b.label { b.radio_button + b.object.username + image_tag(b.object.profile_image.thumb.url) } 
+     end %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

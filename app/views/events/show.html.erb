@@ -8,7 +8,7 @@
 
         <h2 class="blog-post-title"><%= @event.title %></h2>
 
-        <p class="blog-post-meta"><%= @event.created_at %> by <%= link_to @event.creator.username, user_path(@event.creator) %></p>
+        <p class="blog-post-meta"><%= @event.created_at %> | Current Organiser: <%= link_to @event.creator.username, user_path(@event.creator) %></p>
 
         <button class="btn btn-success" id="join"><%= link_to "Join", join_path %></button>
 
@@ -43,10 +43,18 @@
             <% @event.titles.each do |title| %>
               <p>
                 <%= title.name %>
+                <% if current_user == @event.creator %> 
+                  <%= link_to 'Edit', edit_title_path(title) %> |
+                  <%= link_to 'Destroy', title, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
                 <% title.activities.each do |activity| %>
                   <p>
                     <%= activity.start %>
                     <%= activity.content %>
+                    <% if current_user == @event.creator %>
+                      <%= link_to 'Edit', edit_activity_path(activity) %> |
+                      <%= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    <% end %>
                   </p>
                 <% end %>
               </p><hr>
@@ -54,9 +62,21 @@
           </div>
         </div><!-- /.blog-post -->
       </div>
-
-      <%= render 'titleform', title: @title %>
+      <% if current_user == @event.creator %>
+        <%= render 'titleform', title: @title %>
+      <% end %>
+      <% if current_user == @event.creator %>
       <%= render 'activityform', activity: @activity, titles: @titles %>
+      <% end %>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 lead">Assign the organisor<hr></div>
+            <%= render 'roleform', event: @event %>
+          </div>
+        </div>
+      </div>
 
       <div class="container">
         <div class="row">
@@ -114,6 +134,7 @@
 
     </div><!-- /.blog-main -->
 
+
     <div class="col-sm-3 offset-sm-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h4>About</h4><hr>
@@ -164,6 +185,7 @@
 
 
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% if current_user == @event.creator %> 
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+  <button><%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+<% end %>

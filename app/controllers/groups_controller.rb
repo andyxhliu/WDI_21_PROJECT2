@@ -1,6 +1,7 @@
-class GroupsController < ApplicationController
+class GroupsController < ApplicationController 
+  before_action :authenticate_user!
   before_action :set_group, only: [:show, :edit, :update, :destroy, :join]
-
+  before_action :admin?, only: [:edit, :destroy, :update]
   def index
     @groups = Group.all
   end
@@ -64,6 +65,10 @@ class GroupsController < ApplicationController
   private
     def set_group
       @group = Group.find(params[:id])
+    end
+
+    def admin?
+      redirect_to event_path(@event) unless current_user == @event.creator
     end
 
     def group_params
