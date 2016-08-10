@@ -3,6 +3,8 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :attendees, class_name: "User", join_table: "events_users" 
   belongs_to :group
   has_many :comments
+  has_many :activities
+  has_many :titles
   has_and_belongs_to_many :tags
   mount_uploader :event_image, EventImageUploader
 

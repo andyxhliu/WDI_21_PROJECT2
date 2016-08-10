@@ -26,61 +26,102 @@
  * You can use this table in Bootstrap (v3) projects. Material Design Responsive Table CSS-style will override basic bootstrap style.
  * JS used only for table constructor: you don't need it in your project
  */
- @import 'bootstrap';
- @import 'bootstrap.min.js';
-$(document).ready(function() {
-    $("[data-toggle=tooltip]").tooltip();
-    var table = $('#table');
+ // @import 'bootstrap';
+ // @import 'bootstrap.min.js';
+// $(document).ready(function() {
+//     $("[data-toggle=tooltip]").tooltip();
+//     var table = $('#table');
 
-    // Table bordered
-    $('#table-bordered').change(function() {
-        var value = $( this ).val();
-        table.removeClass('table-bordered').addClass(value);
-    });
+//     // Table bordered
+//     $('#table-bordered').change(function() {
+//         var value = $( this ).val();
+//         table.removeClass('table-bordered').addClass(value);
+//     });
 
-    // Table striped
-    $('#table-striped').change(function() {
-        var value = $( this ).val();
-        table.removeClass('table-striped').addClass(value);
-    });
+//     // Table striped
+//     $('#table-striped').change(function() {
+//         var value = $( this ).val();
+//         table.removeClass('table-striped').addClass(value);
+//     });
   
-    // Table hover
-    $('#table-hover').change(function() {
-        var value = $( this ).val();
-        table.removeClass('table-hover').addClass(value);
-    });
+//     // Table hover
+//     $('#table-hover').change(function() {
+//         var value = $( this ).val();
+//         table.removeClass('table-hover').addClass(value);
+//     });
 
-    // Table color
-    $('#table-color').change(function() {
-        var value = $(this).val();
-        table.removeClass(/^table-mc-/).addClass(value);
-    });
+//     // Table color
+//     $('#table-color').change(function() {
+//         var value = $(this).val();
+//         table.removeClass(/^table-mc-/).addClass(value);
+//     });
+// });
+
+// // jQuery’s hasClass and removeClass on steroids
+// // by Nikita Vasilyev
+// // https://github.com/NV/jquery-regexp-classes
+// (function(removeClass) {
+
+//   jQuery.fn.removeClass = function( value ) {
+//     if ( value && typeof value.test === "function" ) {
+//       for ( var i = 0, l = this.length; i < l; i++ ) {
+//         var elem = this[i];
+//         if ( elem.nodeType === 1 && elem.className ) {
+//           var classNames = elem.className.split( /\s+/ );
+
+//           for ( var n = classNames.length; n--; ) {
+//             if ( value.test(classNames[n]) ) {
+//               classNames.splice(n, 1);
+//             }
+//           }
+//           elem.className = jQuery.trim( classNames.join(" ") );
+//         }
+//       }
+//     } else {
+//       removeClass.call(this, value);
+//     }
+//     return this;
+//   }
+
+// })(jQuery.fn.removeClass);
+
+
+
+$(document).on('turbolinks:load', function() {
+  console.log("JS loaded");
+  var $events = $('.events');
+  var $divs = $events.find('.for-search');
+  $('#sort').on('click', function() {
+    var button = this;
+    $divs.sort(function(a, b) {
+      if($(button).text() === "ASC") {
+        return $(a).data('searchstring') > $(b).data('searchstring');
+      } else {
+        return $(a).data('searchstring') < $(b).data('searchstring');
+      }
+    }).each(function() {
+      $(this).appendTo($events);
+    });
+
+    if($(button).text() === "ASC") {
+      $(button).text("DESC");
+    } else {
+      $(button).text("ASC");
+    }
+    return false;
+  });
+
+  $('#search').on('keyup', function() {
+    var input = this;
+    $divs.each(function() {
+      var searchString = $(input).val().toLowerCase();
+      var textToMatch = $(this).data('searchstring').toLowerCase();
+
+      if(textToMatch.match(searchString)) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
 });
-
-// jQuery’s hasClass and removeClass on steroids
-// by Nikita Vasilyev
-// https://github.com/NV/jquery-regexp-classes
-(function(removeClass) {
-
-  jQuery.fn.removeClass = function( value ) {
-    if ( value && typeof value.test === "function" ) {
-      for ( var i = 0, l = this.length; i < l; i++ ) {
-        var elem = this[i];
-        if ( elem.nodeType === 1 && elem.className ) {
-          var classNames = elem.className.split( /\s+/ );
-
-          for ( var n = classNames.length; n--; ) {
-            if ( value.test(classNames[n]) ) {
-              classNames.splice(n, 1);
-            }
-          }
-          elem.className = jQuery.trim( classNames.join(" ") );
-        }
-      }
-    } else {
-      removeClass.call(this, value);
-    }
-    return this;
-  }
-
-})(jQuery.fn.removeClass);

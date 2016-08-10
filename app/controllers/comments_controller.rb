@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     @event = Event.find(comment_params[:event_id])
     @event.comments << @comment
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to "/events/#{@event.id}", notice: 'Comment was successfully created.' }

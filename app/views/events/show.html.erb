@@ -40,13 +40,23 @@
             <div class="col-md-12 lead">Activities<hr></div>
           </div>
           <div class="entry-content">
-            <p>Day 1: Las Vegas – Zion National Park & Bryce Canyon (L) After departing Las Vegas, travel by air-conditioned minibus to Zion National Park, a dazzling mix of white, pink and red Navajo sandstone cliffs that make for a photographer’s paradise. Experience the beauty of Zion Canyon however you’d like during free time in the park. Go on a walk or hike, available for every fitness level. Stroll along the Emerald Pools trail, discover the Temple of Sinawava, the Great White Throne or Weeping Rock, or visit the interpretive Human History Museum where you can enjoy an entertaining ranger’s talk on the patio. After a full afternoon in Zion you'll head to Bryce Canyon, a natural amphitheater created by erosion along the eastern side of the Paunsaugunt Plateau. Bryce Canyon is famous for its hoodoos, or dramatic red spires. Take a walk down into the hoodoos for an unforgettable experience. Enjoy a barbecue dinner (own expense) and a fun evening with new friends.</p><hr>
-            <p>Day 2: Bryce Canyon – Monument Valley (B, L) Wake up to a beautiful Southwest morning and enjoy the drive to Lake Powell for an optional visit to Antelope Canyon (own expense) before traveling to one of the most recognizable locations on the planet: Monument Valley, home to the Navajo Nation. A Navajo member will take you on a guided Jeep tour of the valley before you spend the night at your campsite gazing up at the amazing starry sky, which come morning will be transformed by the magnificent sunrise.</p><hr>
-            <p>Day 3: Monument Valley – Grand Canyon National Park – Las Vegas (B*, L) If camping option was selected, a light breakfast is included; if you stayed overnight at the lodge, breakfast may be purchased at the hotel's cafe. Save the best for last on Day 3! After a brief visit to a traditional Navajo trading post, follow the Colorado River through the Painted Desert to Grand Canyon National Park. Again, see the park as you’d like. Walk along the South Rim, hike deep into the canyon, relax at a rim-side cafe or take in bird’s-eye views on an optional helicopter ride (own expense). Then head back to Las Vegas, where your 3-day adventure concludes in the late evening.</p><hr>
+            <% @event.titles.each do |title| %>
+              <p>
+                <%= title.name %>
+                <% title.activities.each do |activity| %>
+                  <p>
+                    <%= activity.start %>
+                    <%= activity.content %>
+                  </p>
+                <% end %>
+              </p><hr>
+            <% end %>
           </div>
         </div><!-- /.blog-post -->
       </div>
 
+      <%= render 'titleform', title: @title %>
+      <%= render 'activityform', activity: @activity, titles: @titles %>
 
       <div class="container">
         <div class="row">

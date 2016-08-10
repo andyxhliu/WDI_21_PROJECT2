@@ -1,9 +1,11 @@
 Rails.application.routes.draw do 
+  resources :titles
+  resources :activities
   resources :tags
   resources :comments
   resources :groups
   resources :events
-  devise_for :users
+  devise_for :users, controllers: { registrations: :registrations }
   root "statics#homepage"
   get 'about', to: 'statics#about'
   get 'users/:id', to: 'users#show', as: 'user'

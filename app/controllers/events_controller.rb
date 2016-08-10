@@ -8,6 +8,9 @@ class EventsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @activity = Activity.new
+    @title = Title.new
+    @titles = @event.titles
   end
 
   def new

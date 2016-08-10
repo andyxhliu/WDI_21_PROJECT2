@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809111240) do
+ActiveRecord::Schema.define(version: 20160809162533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.text     "content"
+    t.time     "start"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "title_id"
+    t.index ["title_id"], name: "index_activities_on_title_id", using: :btree
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -70,6 +80,14 @@ ActiveRecord::Schema.define(version: 20160809111240) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "titles", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_titles_on_event_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "first_name"
@@ -107,8 +125,10 @@ ActiveRecord::Schema.define(version: 20160809111240) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
 
+  add_foreign_key "activities", "titles"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
   add_foreign_key "events", "groups"
   add_foreign_key "events", "users"
+  add_foreign_key "titles", "events"
 end
