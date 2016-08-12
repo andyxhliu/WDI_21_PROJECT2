@@ -24,14 +24,6 @@
                   <span class="text-muted">Description:</span><%= @user.description%><br><br>
                   <small class="text-muted">Created: <%= @user.created_at %></small>
                 </div>
-                <div class="col-md-6">
-                  <div class="activity-mini">
-                    <i class="glyphicon glyphicon-comment text-muted"></i> 500
-                  </div>
-                  <div class="activity-mini">
-                    <i class="glyphicon glyphicon-thumbs-up text-muted"></i> 1500
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -72,7 +64,7 @@
                         <td data-title="Link">
                           <%= link_to event.creator.username, user_path(event.creator) %>
                         </td>
-                        <td data-title="Status"><button>Details</button></td>
+                        <td data-title="Status"><button><%= link_to "Details", event_path(event) %></button></td>
                       </tr>
                     <% end %>
                   </tbody>
@@ -112,7 +104,43 @@
                         <td data-title="Link">
                           <%= link_to event.creator.username, user_path(event.creator) %>
                         </td>
-                        <td data-title="Status"><button>Details</button></td>
+                        <td data-title="Status"><button><%= link_to "Details", event_path(event) %></button></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">Groups Joined<hr></div>
+            </div>
+            <div id="demo">
+              <div class="table-responsive-vertical shadow-z-1">
+                <table id="table" class="table table-hover table-mc-light-blue">
+                  <thead>
+                    <tr>
+                      <th>Group</th>
+                      <th>Members</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @user.groups.each do |group| %>
+                      <tr>
+                        <td data-title="Name">
+                          <%= link_to group.title, group_path(group) %>
+                        </td>
+                        <td data-title="Name"><%= group.users.length%></td>
+                        <td data-title="Status"><button><%= link_to "Details", group_path(group) %></button></td>
                       </tr>
                     <% end %>
                   </tbody>

@@ -47,7 +47,7 @@ class TitlesController < ApplicationController
   def update
     respond_to do |format|
       if @title.update(title_params)
-        format.html { redirect_to @title, notice: 'Title was successfully updated.' }
+        format.html { redirect_to "/events/#{@event.id}", notice: 'Title was successfully updated.' }
         format.json { render :show, status: :ok, location: @title }
       else
         format.html { render :edit }

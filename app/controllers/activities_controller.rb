@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
   end
-
+ 
   # GET /activities/1
   # GET /activities/1.json
   def show
@@ -47,9 +47,15 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1
   # PATCH/PUT /activities/1.json
   def update
+
+    @title = Title.find(activity_params[:title_id])
+    @event = Event.find(@title[:event_id])
+    @activity = Activity.new(activity_params)
+    @title.activities << @activity
+    
     respond_to do |format|
       if @activity.update(activity_params)
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
+        format.html { redirect_to "/events/#{@event.id}", notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
         format.html { render :edit }
@@ -65,7 +71,7 @@ class ActivitiesController < ApplicationController
     @title = Title.find(@activity[:title_id])
     @event = Event.find(@title[:event_id])
     respond_to do |format|
-      format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
+      format.html { redirect_to event_path(@event), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

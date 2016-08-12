@@ -68,7 +68,7 @@ class GroupsController < ApplicationController
     end
 
     def admin?
-      redirect_to event_path(@event) unless current_user == @event.creator
+      redirect_to group_path(@group) unless @group.users.includes(current_user)
     end
 
     def group_params

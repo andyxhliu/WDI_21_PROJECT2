@@ -31,6 +31,10 @@
           <div class="entry-content">
             <p><%= @event.description %></p>
           </div>
+          <% if current_user == @event.creator %> 
+            <%= link_to 'Edit', edit_event_path(@event) %> |
+            <button><%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+          <% end %>
         </div><!-- /.blog-post -->
       </div>
 
@@ -42,14 +46,14 @@
           <div class="entry-content">
             <% @event.titles.each do |title| %>
               <p>
-                <%= title.name %>
+                <span class="bold"><%= title.name %><span>
                 <% if current_user == @event.creator %> 
                   <%= link_to 'Edit', edit_title_path(title) %> |
                   <%= link_to 'Destroy', title, method: :delete, data: { confirm: 'Are you sure?' } %>
                 <% end %>
                 <% title.activities.each do |activity| %>
                   <p>
-                    <%= activity.start %>
+                    <span class="bold"><%= activity.start %></span>
                     <%= activity.content %>
                     <% if current_user == @event.creator %>
                       <%= link_to 'Edit', edit_activity_path(activity) %> |
@@ -62,21 +66,29 @@
           </div>
         </div><!-- /.blog-post -->
       </div>
-      <% if current_user == @event.creator %>
-        <%= render 'titleform', title: @title %>
-      <% end %>
-      <% if current_user == @event.creator %>
-      <%= render 'activityform', activity: @activity, titles: @titles %>
-      <% end %>
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12 lead">Assign the organisor<hr></div>
-            <%= render 'roleform', event: @event %>
+      <% if current_user == @event.creator %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">Add Activities<hr></div>
+            </div>
+            <%= render 'titleform', title: @title %>
+            <%= render 'activityform', activity: @activity, titles: @titles %>
           </div>
         </div>
-      </div>
+      <% end %>
+
+      <% if current_user == @event.creator %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12 lead">Assign the organisor<hr></div>
+              <%= render 'roleform', event: @event %>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
       <div class="container">
         <div class="row">
@@ -135,7 +147,7 @@
     </div><!-- /.blog-main -->
 
 
-    <div class="col-sm-3 offset-sm-1 blog-sidebar">
+    <div class="col-sm-3 offset-sm-1 blog-sidebar about">
       <div class="sidebar-module sidebar-module-inset">
         <h4>About</h4><hr>
 
@@ -166,7 +178,9 @@
       <div class="sidebar-module">
         <h4>Interested?</h4>
         <ol class="list-unstyled">
-        <button class="btn btn-info" id="info"><a href="#">Event Gallery</a></button>
+        <button class="btn btn-info" id="info">
+          <%= link_to "Event Gallery" %>
+        </button>
         </ol>
       </div>
       <div class="sidebar-module">
@@ -184,8 +198,3 @@
 </div><!-- /.container -->
 
 
-<p id="notice"><%= notice %></p>
-<% if current_user == @event.creator %> 
-  <%= link_to 'Edit', edit_event_path(@event) %> |
-  <button><%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-<% end %>

@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :comments
   has_many :activities
   has_many :titles
+  has_many :galleries
   has_and_belongs_to_many :tags
   mount_uploader :event_image, EventImageUploader
 

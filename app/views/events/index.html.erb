@@ -1,19 +1,13 @@
-<div class="col-md-12">
-  <div class="row">
-    <div class="col-md-10">
-      <div class="form-group">
-        <input id="search" placeholder="Search" class="form-control">
-      </div>
-    </div>
-    <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" id="likes" class="btn btn-secondary">Likes</button>
-      <button type="button" id="recent" class="btn btn-secondary">Most Recent Event</button>
-    </div>
+<div class="col-md-12" id="main-container">
+  
+  <div class="row">
+    <button type="button" id="likes" class="btn btn-secondary">Most Likes</button>
+    <button type="button" id="recent" class="btn btn-secondary">Most Recent Event</button>
   </div>
 
-  <div class="row events">
+  <div class="row events" id="events-cards">
     <% @events.each do |event| %> 
-      <div class="col-xs-6 col-md-3 for-search" data-searchstring="<%= event.tags.pluck(:name).join(' ') %> <%= event.location %> <%= event.title%>" data-added="<%= event.end_date %>" data-likes="<%= event.get_upvotes.size %>">
+      <div class="col-xs-6 col-md-4 col-lg-3 for-search" data-searchstring="<%= event.tags.pluck(:name).join(' ') %> <%= event.location %> <%= event.title%>" data-added="<%= event.end_date %>" data-likes="<%= event.get_upvotes.size %>">
         <div id="box-3" class="box">
           <%= link_to image_tag(event.event_image.thumb.url), event %>
           <span class="caption fade-caption">
@@ -21,15 +15,15 @@
                 <%= event.tags.first.name %> 
             </div>
             <div class="card-content">
-              <p><%=distance_of_time_in_words(event.end_date, Time.now) %> Remaining</p>
+              <p><span class="time-remianing"><%=distance_of_time_in_words(event.end_date, Time.now) %> Remaining</span></p>
               <div class="card-title">
                 <h3><%=link_to event.title, event %></h3>
               </div>
               <div class="activity-mini">
-                <i class="glyphicon glyphicon-comment text-muted"></i> <%= event.comments.size %>
+                <i class="glyphicon glyphicon-comment text-muted white"></i> <%= event.comments.size %>
               </div>
               <div class="activity-mini">
-                <i class="glyphicon glyphicon-thumbs-up text-muted"></i> <%= event.get_upvotes.size %>
+                <i class="glyphicon glyphicon-thumbs-up text-muted white"></i><%= event.get_upvotes.size %>
               </div>
             </div>
           </span>

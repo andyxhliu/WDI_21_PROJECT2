@@ -11,20 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_id %>
-    <%= f.collection_select :user_id, User.all, :id, :username %>
+
+  <div class="form-group row">
+    <div class="col-xs-12">
+      <%= f.collection_radio_buttons(:user_id, User.all, :id, :profile_image) do |b|
+      b.label { b.radio_button(:style=>"margin-left: 20px;") + b.object.username + image_tag(b.object.profile_image.thumb.url) } 
+      end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.collection_radio_buttons(:user_id, User.all, :id, :profile_image) do |b|
-      b.label { b.radio_button + b.object.username + image_tag(b.object.profile_image.thumb.url) } 
-     end %>
-  </div>
 
 
-
-  <div class="actions">
+  <div class="actions" id="update-role">
     <%= f.submit %>
   </div>
 <% end %>

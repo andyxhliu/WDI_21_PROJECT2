@@ -11,19 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+  <div class="form-group row">
+    <%= f.label :title_id, :for=>"exampleSelect1", :class=>"col-xs-2 col-form-label" %>
+    <div class="col-xs-10">
+      <%= f.collection_select :title_id, Title.all, :id, :name, :class=>"form-control", :id=>"exampleSelect1" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :start %>
-    <%= f.time_select :start %>
+  <div class="form-group row">
+    <%= f.label :start, :for=>"example-datetime-local-input", :class=>"col-xs-2 col-form-label" %>
+    <div class="col-xs-10">
+      <%= f.time_select :start %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :title_id %>
-    <%= f.collection_select :title_id, Title.all, :id, :name %>
+  <div class="form-group row">
+    <%= f.label :content, :for=>"exampleTextarea", :class=>"col-xs-2 col-form-label" %>
+    <div class="col-xs-10">
+      <%= f.text_area :content, :class=>"form-control", :id=>"exampleTextarea", :rows=>"3" %>
+    </div>
   </div>
 
   <div class="actions">

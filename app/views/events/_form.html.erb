@@ -1,56 +1,72 @@
-<%= form_for(event) do |f| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-      <ul>
-      <% event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="panel panel-default">
+ <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12 lead">New Event<hr></div>
     </div>
-  <% end %>
+    <div class="row"> 
+      <%= form_for(event) do |f| %>
+        <% if event.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+            <ul>
+            <% event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :title, :class=>"col-xs-2 col-form-label" %>
+          <div class="col-xs-10">
+            <%= f.text_area :title, :class=>"form-control", :id=>"exampleTextarea", :rows=>"1" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :start_date, :class=>"col-xs-2 col-form-label" %>
+          <%= f.date_select :start_date, :class=>"form-control" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :end_date, :class=>"col-xs-2 col-form-label" %>
+          <%= f.date_select :end_date, :class=>"form-control" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :event_image %><br />
-    <%= f.file_field :event_image %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :location, :class=>"col-xs-2 col-form-label" %>
+          <div class="col-xs-10">
+            <%= f.text_area :location, :class=>"form-control", :id=>"exampleTextarea", :rows=>"1" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :event_image, :class=>"col-xs-2 col-form-label" %><br />
+          <%= f.file_field :event_image %>
+        </div>
 
-  <div class="field">
-    <%= f.label :group_id %>
-    <%= f.collection_select :group_id, Group.all, :id, :title %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :description, :class=>"col-xs-2 col-form-label" %>
+          <div class="col-xs-10">
+            <%= f.text_area :description, :class=>"form-control", :id=>"exampleTextarea", :rows=>"3" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-  </div>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.label :group_id, :class=>"col-xs-2 col-form-label" %>
+          <%= f.collection_select :group_id, Group.all, :id, :title, :class=>"form-control" %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit %>
+        <div class="form-group row col-xs-offset-1">
+          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name, :class=>"form-control" %>
+        </div>
+
+        <div class="actions" id="update-role">
+          <%= f.submit %>
+        </div>
+
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
