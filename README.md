@@ -23,7 +23,7 @@ Wireframing - Balsamiq was used to develop the project wireframes. Wireframes we
 ![](public/images/Screen Shot 2016-08-12 at 8.48.58 AM.png)
 ###Project Management<hr>
 Project Management is carried out by using the software Trello. To-do-list can be broken into different catagories, and it is beneficial to know which development stage you are on.
-![](public/images/Screen Shot 2016-08-12 at 9.35.02 AM)
+![](public/images/Screen Shot 2016-08-12 at 10.46.06 AM.png)
 ###Technologies<hr>
 <li>Javascript</li>
 <li>jQuery</li>
